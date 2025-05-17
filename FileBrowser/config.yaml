@@ -1,0 +1,14 @@
+frontend:
+  name: "My FileBrowser"
+auth:
+  methods:
+    password:
+      enabled: true
+      minLength: 7
+server:
+  sources:
+    - path: "/folder"
+      config:
+        defaultEnabled: true
+        defaultUserScope: "/"
+        createUserDir: true

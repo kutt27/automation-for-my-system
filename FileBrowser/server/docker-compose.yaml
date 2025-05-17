@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  filebrowser:
+    image: gtstef/filebrowser
+    container_name: filebrowser
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ../storage:/srv
+      - ./database:/home/filebrowser/database
+      - ./config.yaml:/home/filebrowser/config.yaml

@@ -1,0 +1,14 @@
+version: '3'
+services:
+  filebrowser:
+    image: gtstef/filebrowser
+    volumes:
+      - '/path/to/folder:/folder'
+      - 'database:/home/filebrowser/database'
+      - './config.yaml:/home/filebrowser/config.yaml'
+    ports:
+      - '80:80'
+    restart: always
+
+volumes:
+  database:
