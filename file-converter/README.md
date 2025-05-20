@@ -15,8 +15,6 @@ Hosting: Locally on docker-compose
 ## Docker Compose Configuration
 
 ```yaml
-# See more at: [YOUR_GITHUB_REPO_LINK_HERE]
-
 services:
   convertx:
     image: ghcr.io/c4illin/convertx
