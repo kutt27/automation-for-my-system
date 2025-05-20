@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  convertx:
+    image: ghcr.io/c4illin/convertx
+    container_name: convertx
+    restart: unless-stopped
+    ports:
+      - "5000:3000"
+    environment:
+      - JWT_SECRET=yourSuperSecretJWTstringHere
+      # Optional: Uncomment to allow HTTP if not using HTTPS
+      - HTTP_ALLOWED=true
+    volumes:
+      - ./data:/app/data
