@@ -1,0 +1,35 @@
+{
+  "buffer_font_family": "Iosevka",
+  "ui_font_family": "Iosevka",
+  "terminal": {
+    "font_family": "Iosevka",
+  },
+  "toolbar": {
+      "breadcrumbs": false,
+      "quick_actions": false,
+      "selections_menu": false,
+      "agent_review": false,
+      "code_actions": false,
+  },
+  "icon_theme": "Material Icon Theme",
+  "ui_font_size": 14.0,
+  "buffer_font_size": 14.0,
+  "theme": {
+    "mode": "dark",
+    "light": "Gruvbox Light",
+    "dark": "Gruvbox Material Dark Hard",
+  },
+  "auto_update": false,
+  "soft_wrap": "editor_width",
+  "tab_size": 2,
+  "scroll_sensitivity": 2,
+  "relative_line_numbers": "enabled",
+  "format_on_save": "off",
+  "ensure_final_newline_on_save": true,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "disable_ai": true,
+  "autosave": "on_focus_change",
+}
