@@ -3,6 +3,12 @@
   "ui_font_family": "Iosevka",
   "terminal": {
     "font_family": "Iosevka",
+    "detect_venv": {
+      "on": {
+        "directories": [".env", "env", ".venv", "venv"], 
+        "activate_script": "default"
+      }
+    }
   },
   "toolbar": {
       "breadcrumbs": false,
@@ -32,4 +38,5 @@
   },
   "disable_ai": true,
   "autosave": "on_focus_change",
+  "base_keymap": "VSCode"
 }
