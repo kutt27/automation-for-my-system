@@ -60,14 +60,7 @@ create_mojo_project() {
     echo ""
     echo "Creating Mojo project..."
     
-    PROJECT_DIR="$HOME/mojo-projects/hello-world"
-    
-    mkdir -p "$HOME/mojo-projects"
-    
-    if [ -d "$PROJECT_DIR" ]; then
-        echo "Project directory already exists, removing..."
-        rm -rf "$PROJECT_DIR"
-    fi
+    mkdir -p "$(dirname "$PROJECT_DIR")"
     
     if ! pixi init "$PROJECT_DIR" \
         -c https://conda.modular.com/max-nightly/ \
@@ -138,25 +131,61 @@ main() {
     
     export PATH="$HOME/.pixi/bin:$HOME/.local/bin:$PATH"
     
-    install_pixi
-    create_mojo_project
-    verify_installation
-    setup_shell_integration
+    echo ""
+    echo "Choose an option:"
+    echo "  1) Install Mojo to system"
+    echo "  2) Create a Mojo project"
+    echo ""
+    read -p "Enter your choice [1/2]: " choice
     
-    trap - EXIT
-    echo ""
-    echo "========================================="
-    echo "Installation complete!"
-    echo ""
-    echo "Project location: $PROJECT_DIR"
-    echo ""
-    echo "Usage:"
-    echo "  cd $PROJECT_DIR"
-    echo "  pixi run mojo <file.mojo>"
-    echo ""
-    echo "Run 'source ~/.bashrc' or restart your shell"
-    echo "to add pixi to your PATH"
-    echo "========================================="
+    case "$choice" in
+        1)
+            install_pixi
+            setup_shell_integration
+            trap - EXIT
+            echo ""
+            echo "========================================="
+            echo "Installation complete!"
+            echo ""
+            echo "Run 'source ~/.bashrc' or restart your shell"
+            echo "to add pixi to your PATH"
+            echo "========================================="
+            ;;
+        2)
+            read -p "Enter project location [default: $HOME/mojo-projects/hello-world]: " user_location
+            PROJECT_DIR="${user_location:-$HOME/mojo-projects/hello-world}"
+            
+            if [ -d "$PROJECT_DIR" ]; then
+                echo "Error: Directory '$PROJECT_DIR' already exists."
+                echo "Please choose a different location or remove the existing directory."
+                exit 1
+            fi
+            
+            install_pixi
+            create_mojo_project
+            verify_installation
+            setup_shell_integration
+            
+            trap - EXIT
+            echo ""
+            echo "========================================="
+            echo "Installation complete!"
+            echo ""
+            echo "Project location: $PROJECT_DIR"
+            echo ""
+            echo "Usage:"
+            echo "  cd $PROJECT_DIR"
+            echo "  pixi run mojo <file.mojo>"
+            echo ""
+            echo "Run 'source ~/.bashrc' or restart your shell"
+            echo "to add pixi to your PATH"
+            echo "========================================="
+            ;;
+        *)
+            echo "Invalid choice. Exiting."
+            exit 1
+            ;;
+    esac
 }
 
 main "$@"
